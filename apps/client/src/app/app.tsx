@@ -1,5 +1,5 @@
 import * as React from 'react';
 
-import { Home } from './page/home';
+import * as Members from './page/members';
 
-export const App = () => <Home />;
+export const App = () => <Members.Component />;
