@@ -12,14 +12,19 @@ type Props = {
 export const Component = (props: Props) => {
   return (
     <StyledMemberContainer>
-      {props.members.map((member) => (
-        <Member.Component key={member.id} {...member} />
+      {props.members.map((member, index) => (
+        <Member.Component key={member.id} {...member} index={index} />
       ))}
     </StyledMemberContainer>
   );
 };
 
 const StyledMemberContainer = styled.div`
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
+  background-color: red;
+  max-height: 300px;
+  overflow-y: scroll;
+  padding: 12px;
 `;

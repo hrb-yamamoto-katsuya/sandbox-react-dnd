@@ -1,10 +1,10 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
-// import * as Application from './application';
+import * as UI from './ui';
 
 export const createReducer = () => {
   const reducer = ReduxToolkit.combineReducers({
-    // application: Application.reducer,
+    ui: UI.reducer,
   });
 
   return { reducer };
