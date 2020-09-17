@@ -3,13 +3,13 @@ import * as ReactDnD from 'react-dnd';
 
 import styled from 'styled-components';
 
-import * as TeamsEntity from '~client/app/application/domain/teams/entity';
+import * as OrganizationEntity from '~client/app/application/domain/organization/entity';
 
 type Props = {};
 
 export const Component = (props: Props) => {
   const [{}, refDrop] = ReactDnD.useDrop({
-    accept: TeamsEntity.itemTypes.member,
+    accept: OrganizationEntity.itemTypes.member,
   });
   return <StyledDropZone ref={refDrop}></StyledDropZone>;
 };

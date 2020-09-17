@@ -11,15 +11,15 @@ type Props = {
 
 export const Component = (props: Props) => {
   return (
-    <StyledMemberContainer>
+    <StyledMembersContainer>
       {props.members.map((member, index) => (
         <Member.Component key={member.id} {...member} index={index} />
       ))}
-    </StyledMemberContainer>
+    </StyledMembersContainer>
   );
 };
 
-const StyledMemberContainer = styled.div`
+const StyledMembersContainer = styled.div`
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;

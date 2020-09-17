@@ -23,14 +23,19 @@ export const Component = () => {
         })
       );
     },
-    [teams, setTeams]
+    [teams]
   );
 
   return (
     <ReactDnD.DndProvider backend={ReactDnDHTML5Backend.HTML5Backend}>
       <StyledTeamContainer>
         {teams.map((team, index) => (
-          <Team.Component {...team} index={index} moveTeam={moveTeam} />
+          <Team.Component
+            key={team.teamName}
+            {...team}
+            index={index}
+            moveTeam={moveTeam}
+          />
         ))}
       </StyledTeamContainer>
       <DropZone.Component />

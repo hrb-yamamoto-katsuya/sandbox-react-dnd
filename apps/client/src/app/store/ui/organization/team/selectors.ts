@@ -5,3 +5,8 @@ import * as Types from './types';
 const featureStateSelector = (state: {
   [Constants.featureKey]: Types.InitialState;
 }) => state[Constants.featureKey];
+
+const memberSelector = ReduxToolkit.createSelector(
+  featureStateSelector,
+  (state) => state.status
+);

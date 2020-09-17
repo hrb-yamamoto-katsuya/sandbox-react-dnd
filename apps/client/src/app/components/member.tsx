@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDnD from 'react-dnd';
 
-import * as TeamsEntity from '~client/app/application/domain/teams/entity';
+import * as OrganizationEntity from '~client/app/application/domain/organization/entity';
 
 import styled from 'styled-components';
 
@@ -15,7 +15,7 @@ type Props = {
 export const Component = (props: Props) => {
   const [{}, refDrag] = ReactDnD.useDrag({
     item: {
-      type: TeamsEntity.itemTypes.member,
+      type: OrganizationEntity.itemTypes.member,
       id: props.id,
       index: props.index,
     },

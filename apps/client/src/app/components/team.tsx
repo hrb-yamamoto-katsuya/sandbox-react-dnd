@@ -3,10 +3,10 @@ import * as ReactDnD from 'react-dnd';
 
 import styled from 'styled-components';
 
-import * as MemberList from './member-list';
+import * as Members from './members';
 
 import { mockData } from './mock-data';
-import * as TeamsEntity from '~client/app/application/domain/teams/entity';
+import * as OrganizationEntity from '~client/app/application/domain/organization/entity';
 
 type Props = typeof mockData[number] & {
   index: number;
@@ -16,22 +16,25 @@ type Props = typeof mockData[number] & {
 type DragItem = {
   index: Props['index'];
   id: Props['teamName'];
-  type: typeof TeamsEntity.itemTypes.team;
+  type: typeof OrganizationEntity.itemTypes.team;
 };
 
 export const Component = (props: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const [{}, refDrag] = ReactDnD.useDrag({
+  const [{ isDragging }, refDrag] = ReactDnD.useDrag({
     item: {
-      type: TeamsEntity.itemTypes.team,
+      type: OrganizationEntity.itemTypes.team,
       id: props.teamName,
       index: props.index,
     },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
   });
 
   const [{}, refDrop] = ReactDnD.useDrop({
-    accept: TeamsEntity.itemTypes.team,
+    accept: OrganizationEntity.itemTypes.team,
     hover(item: DragItem) {
       if (!ref.current) return;
 
@@ -49,9 +52,9 @@ export const Component = (props: Props) => {
   refDrag(refDrop(ref));
 
   return (
-    <StyledTeam ref={ref}>
+    <StyledTeam ref={ref} className={`${isDragging ? 'isDragging' : ''}`}>
       <StyledHeading>{props.teamName}</StyledHeading>
-      <MemberList.Component members={props.members} />
+      <Members.Component members={props.members} />
     </StyledTeam>
   );
 };
@@ -63,4 +66,9 @@ const StyledHeading = styled.h1`
 
 const StyledTeam = styled.div`
   width: 300px;
+  cursor: move;
+
+  &.isDragging {
+    opacity: 0;
+  }
 `;

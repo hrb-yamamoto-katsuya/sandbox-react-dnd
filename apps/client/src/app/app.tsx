@@ -2,11 +2,11 @@ import * as React from 'react';
 
 import styled from 'styled-components';
 
-import * as Teams from './page/teams';
+import * as Organization from './page/organization';
 
 export const App = () => (
   <Wrap>
-    <Teams.Component />
+    <Organization.Component />
   </Wrap>
 );
 
