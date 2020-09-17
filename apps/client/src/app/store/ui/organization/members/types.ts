@@ -1,4 +1,5 @@
 import Status from '~client/app/store/status';
+import * as MembersEntity from '~client/app/application/domain/organization/members/entity';
 
 // ==================================================
 // State
@@ -6,6 +7,7 @@ import Status from '~client/app/store/status';
 
 export type InitialState = {
   status: Status.Pristine;
+  members: MembersEntity.Member[];
 };
 
 export type ValidState = {

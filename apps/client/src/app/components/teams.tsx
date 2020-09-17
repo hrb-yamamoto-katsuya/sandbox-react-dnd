@@ -45,4 +45,5 @@ export const Component = () => {
 
 const StyledTeamContainer = styled.div`
   display: flex;
+  justify-content: space-around;
 `;

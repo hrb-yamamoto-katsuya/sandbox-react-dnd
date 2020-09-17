@@ -1,5 +1,5 @@
 import Status from '~client/app/store/status';
-import * as TeamEntity from '~client/app/application/domain/organization/team/entity';
+import * as TeamsEntity from '~client/app/application/domain/organization/teams/entity';
 
 // ==================================================
 // State
@@ -7,7 +7,7 @@ import * as TeamEntity from '~client/app/application/domain/organization/team/en
 
 export type InitialState = {
   status: Status.Pristine;
-  team: TeamEntity.Team;
+  teams: TeamsEntity.Team[];
 };
 
 export type ValidState = {

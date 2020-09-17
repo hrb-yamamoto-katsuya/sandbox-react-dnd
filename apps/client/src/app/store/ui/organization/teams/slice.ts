@@ -5,6 +5,8 @@ import Status from '~client/app/store/status';
 import * as Constants from './constants';
 import * as Types from './types';
 
+import { teams } from './mock-data';
+
 // ==================================================
 // Helpers
 // ==================================================
@@ -25,6 +27,7 @@ export function assertStatus(
 
 export const initialState: Types.InitialState = {
   status: Status.Pristine,
+  teams,
 };
 
 const name = `${Constants.parentsKey}/${Constants.featureKey}`;

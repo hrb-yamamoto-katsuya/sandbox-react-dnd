@@ -1,11 +1,11 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
-import * as Team from './team';
-import * as Member from './member';
+import * as Teams from './teams';
+import * as Members from './members';
 
 export type State = {};
 
 export const reducer = ReduxToolkit.combineReducers<State>({
-  [Team.featureKey]: Team.reducer,
-  [Member.featureKey]: Member.reducer,
+  [Teams.featureKey]: Teams.reducer,
+  [Members.featureKey]: Members.reducer,
 });

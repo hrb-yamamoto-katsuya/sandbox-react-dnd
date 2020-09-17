@@ -6,7 +6,7 @@ const featureStateSelector = (state: {
   [Constants.featureKey]: Types.InitialState;
 }) => state[Constants.featureKey];
 
-const memberSelector = ReduxToolkit.createSelector(
+export const membersSelector = ReduxToolkit.createSelector(
   featureStateSelector,
-  (state) => state.status
+  (state) => state.members
 );
