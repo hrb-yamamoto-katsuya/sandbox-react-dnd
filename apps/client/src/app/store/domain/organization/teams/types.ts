@@ -1,5 +1,5 @@
 import Status from '~client/app/store/status';
-import * as MembersEntity from '~client/app/application/domain/organization/members/entity';
+import * as TeamsEntity from '~client/app/application/domain/organization/teams/entity';
 
 // ==================================================
 // State
@@ -7,11 +7,12 @@ import * as MembersEntity from '~client/app/application/domain/organization/memb
 
 export type InitialState = {
   status: Status.Pristine;
-  members: MembersEntity.Member[];
+  teams: TeamsEntity.Team[];
 };
 
 export type ValidState = {
   status: Exclude<Status, Status.Pristine>;
+  teams: TeamsEntity.Team[];
 };
 
 export type State = InitialState | ValidState;

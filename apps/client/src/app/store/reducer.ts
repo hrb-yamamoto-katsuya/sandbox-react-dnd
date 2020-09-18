@@ -1,10 +1,10 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
-import * as UI from './ui';
+import * as Domain from './domain';
 
 export const createReducer = () => {
   const reducer = ReduxToolkit.combineReducers({
-    ui: UI.reducer,
+    [Domain.featureKey]: Domain.reducer,
   });
 
   return { reducer };
