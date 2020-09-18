@@ -1,3 +1,5 @@
+import * as ReduxToolkit from '@reduxjs/toolkit';
+
 import Status from '~client/app/store/status';
 import * as TeamsEntity from '~client/app/application/domain/organization/teams/entity';
 
@@ -5,15 +7,14 @@ import * as TeamsEntity from '~client/app/application/domain/organization/teams/
 // State
 // ==================================================
 
-export type InitialState = {
+export interface InitialState
+  extends ReduxToolkit.EntityState<TeamsEntity.Team> {
   status: Status.Pristine;
-  teams: TeamsEntity.Team[];
-};
+}
 
-export type ValidState = {
+export interface ValidState extends ReduxToolkit.EntityState<TeamsEntity.Team> {
   status: Exclude<Status, Status.Pristine>;
-  teams: TeamsEntity.Team[];
-};
+}
 
 export type State = InitialState | ValidState;
 
@@ -22,6 +23,10 @@ export type State = InitialState | ValidState;
 // ==================================================
 
 export type Payload = {
-  action: {};
+  action: {
+    teamsReceived: {
+      teams: TeamsEntity.Team[];
+    };
+  };
   operation: {};
 };
