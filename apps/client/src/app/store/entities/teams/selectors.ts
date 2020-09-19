@@ -9,11 +9,6 @@ const featureStateSelector = (state: Store.RootState) => state.entities.teams;
 
 export const teamsSelector = ReduxToolkit.createSelector(
   featureStateSelector,
-  (state) => state.entities
-);
-
-export const membersSelector = ReduxToolkit.createSelector(
-  featureStateSelector,
   selectAll
 );
 
