@@ -1,5 +1,5 @@
-import * as MembersEntity from './members/entity';
-import * as TeamsEntity from './teams/entity';
+import * as MembersEntity from '../domain/members/entity';
+import * as TeamsEntity from '../domain/teams/entity';
 
 export const itemTypes = {
   team: 'team',

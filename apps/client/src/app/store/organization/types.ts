@@ -1,7 +1,7 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
 import Status from '~client/app/store/status';
-import * as TeamsEntity from '~client/app/application/domain/organization/teams/entity';
+import * as TeamsEntity from '~client/app/application/domain/teams/entity';
 
 // ==================================================
 // State

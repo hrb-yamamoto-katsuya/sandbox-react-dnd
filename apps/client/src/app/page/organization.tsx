@@ -2,20 +2,18 @@ import * as React from 'react';
 import * as ReactRedux from 'react-redux';
 
 import * as Organization from '../templates/organization';
-import * as DomainStateOrganization from '~client/app/store/domain/organization';
-import * as DomainStateOrganizationTeams from '~client/app/store/domain/organization/teams';
-import * as DomainStateOrganizationMembers from '~client/app/store/domain/organization/members';
+import * as AppStateOrganization from '~client/app/store/organization';
+import * as EntitiesTeams from '~client/app/store/entities/teams';
+import * as EntitiesMembers from '~client/app/store/entities/members';
 
 import { teams, members } from './mock-data';
 
 export const Component = () => {
   const dispatch = ReactRedux.useDispatch();
-  dispatch(DomainStateOrganizationTeams.actions.teamsReceived({ teams }));
-  dispatch(DomainStateOrganizationMembers.actions.membersReceived({ members }));
+  dispatch(EntitiesTeams.actions.teamsReceived({ teams }));
+  dispatch(EntitiesMembers.actions.membersReceived({ members }));
 
-  const org = ReactRedux.useSelector(
-    DomainStateOrganization.organizationSelector
-  );
+  const org = ReactRedux.useSelector(AppStateOrganization.organizationSelector);
   console.log(org);
 
   return <Organization.Component />;

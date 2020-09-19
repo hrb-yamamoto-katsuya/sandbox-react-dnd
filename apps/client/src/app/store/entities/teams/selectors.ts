@@ -5,8 +5,7 @@ import * as Slice from './slice';
 
 const { selectAll, selectEntities } = Slice.adapter.getSelectors();
 
-const featureStateSelector = (state: Store.RootState) =>
-  state.domain.organization.teams;
+const featureStateSelector = (state: Store.RootState) => state.entities.teams;
 
 export const teamsSelector = ReduxToolkit.createSelector(
   featureStateSelector,

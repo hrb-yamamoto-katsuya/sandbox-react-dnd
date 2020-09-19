@@ -1,10 +1,12 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
-import * as Domain from './domain';
+import * as Entities from './entities';
+import * as Organization from './organization';
 
 export const createReducer = () => {
   const reducer = ReduxToolkit.combineReducers({
-    [Domain.featureKey]: Domain.reducer,
+    [Entities.featureKey]: Entities.reducer,
+    [Organization.featureKey]: Organization.reducer,
   });
 
   return { reducer };
