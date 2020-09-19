@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDnD from 'react-dnd';
 
-import * as OrganizationEntity from '~client/app/application/domain/organization/entity';
+import * as OrganizationEntity from '~client/app/application/organization/entity';
 
 import styled from 'styled-components';
 

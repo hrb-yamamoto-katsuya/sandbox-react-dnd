@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import * as Members from './members';
 
 import { mockData } from './mock-data';
-import * as OrganizationEntity from '~client/app/application/domain/organization/entity';
+import * as OrganizationEntity from '~client/app/application/organization/entity';
 
 type Props = typeof mockData[number] & {
   index: number;

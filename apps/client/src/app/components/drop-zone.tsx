@@ -3,7 +3,7 @@ import * as ReactDnD from 'react-dnd';
 
 import styled from 'styled-components';
 
-import * as OrganizationEntity from '~client/app/application/domain/organization/entity';
+import * as OrganizationEntity from '~client/app/application/organization/entity';
 
 type Props = {};
 
