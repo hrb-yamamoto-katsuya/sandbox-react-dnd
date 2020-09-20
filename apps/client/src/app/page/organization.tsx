@@ -13,26 +13,51 @@ import * as MockData from './mock-data';
 
 export const Component = () => {
   const dispatch = ReactRedux.useDispatch();
-  dispatch(EntitiesTeams.actions.teamsReceived({ teams: MockData.teams }));
-  dispatch(
-    EntitiesMembers.actions.membersReceived({ members: MockData.members })
-  );
+
+  dispatch(EntitiesTeams.actions.addTeams(MockData.teams));
+  dispatch(EntitiesMembers.actions.addMembers(MockData.members));
 
   const teams = ReactRedux.useSelector(EntitiesTeams.teamsSelector);
   const membersByTeamId = ReactRedux.useSelector(
     EntitiesMembers.membersByTeamIdSelector
   );
+
+  console.log('teams', teams);
+  console.log('membersByTeamId', membersByTeamId);
+
+  dispatch(
+    AppStateOrganization.actions.updateOrganizationTree({
+      teams,
+      members: membersByTeamId,
+    })
+  );
+  // const org = ReactRedux.useSelector(AppStateOrganization.featureStateSelector);
+  // console.log('org', org);
+
   const { tree } = OrganizationEntity.getOrganizationTree(
     teams,
     membersByTeamId
   );
-  // dispatch(
-  //   AppStateOrganization.actions.updateOrganizationTree({
-  //     teams,
-  //     members: membersByTeamId,
-  //   })
-  // );
+
   console.log('tree', [tree]);
+
+  React.useEffect(() => {
+    dispatch(
+      EntitiesTeams.actions.addTeam({
+        id: 100,
+        name: 'team-100',
+        parentTeamId: 0,
+      })
+    );
+    dispatch(
+      EntitiesMembers.actions.addMember({
+        id: 'aaaaaaaaaaaaaaaaaaaaaaaaa',
+        name: 'tyankatsu',
+        src: 'a',
+        teamId: 100,
+      })
+    );
+  }, [dispatch]);
 
   return <Organization.Component />;
 };

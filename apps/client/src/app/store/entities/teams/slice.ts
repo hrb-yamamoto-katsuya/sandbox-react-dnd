@@ -42,14 +42,8 @@ const slice = ReduxToolkit.createSlice({
   name,
   initialState: initialState as Types.State,
   reducers: {
-    teamsReceived(
-      state,
-      action: ReduxToolkit.PayloadAction<
-        Types.Payload['action']['teamsReceived']
-      >
-    ) {
-      adapter.setAll(state, action.payload.teams);
-    },
+    addTeams: adapter.addMany,
+    addTeam: adapter.addOne,
   },
 });
 
