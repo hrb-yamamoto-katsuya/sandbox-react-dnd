@@ -1,7 +1,7 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
 import Status from '~client/app/store/status';
-import * as TeamsEntity from '~client/app/application/domain/teams/entity';
+import * as OrganizationEntity from '~client/app/application/organization/entity';
 
 import * as Constants from './constants';
 import * as Types from './types';
@@ -24,13 +24,10 @@ export function assertStatus(
 // Setups
 // ==================================================
 
-export const adapter = ReduxToolkit.createEntityAdapter<TeamsEntity.Team>({
-  selectId: (team) => team.id,
-});
-
-export const initialState: Types.InitialState = adapter.getInitialState({
+export const initialState: Types.InitialState = {
   status: Status.Pristine,
-});
+  tree: [],
+};
 
 const name = `${Constants.parentsKey}/${Constants.featureKey}`;
 
@@ -42,13 +39,18 @@ const slice = ReduxToolkit.createSlice({
   name,
   initialState: initialState as Types.State,
   reducers: {
-    teamsReceived(
+    updateOrganizationTree(
       state,
       action: ReduxToolkit.PayloadAction<
-        Types.Payload['action']['teamsReceived']
+        Types.Payload['action']['updateOrganizationTree']
       >
     ) {
-      adapter.setAll(state, action.payload.teams);
+      const { tree } = OrganizationEntity.getOrganizationTree(
+        action.payload.teams,
+        action.payload.members
+      );
+
+      state.tree = [tree];
     },
   },
 });

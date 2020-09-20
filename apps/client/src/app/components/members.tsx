@@ -24,7 +24,8 @@ const StyledMembersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   background-color: red;
-  max-height: 300px;
+  max-height: 150px;
+  min-height: 150px;
   overflow-y: scroll;
   padding: 12px;
 `;

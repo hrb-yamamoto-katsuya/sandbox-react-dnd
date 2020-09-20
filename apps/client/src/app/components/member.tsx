@@ -30,5 +30,5 @@ export const Component = (props: Props) => {
 };
 
 const StyledMember = styled.div`
-  width: 50px;
+  width: 70px;
 `;
