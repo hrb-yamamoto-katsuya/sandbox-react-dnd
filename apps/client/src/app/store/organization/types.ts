@@ -2,7 +2,6 @@ import Status from '~client/app/store/status';
 import * as OrganizationEntity from '~client/app/application/organization/entity';
 
 import * as EntitiesStoreTeams from '~client/app/store/entities/teams';
-import * as EntitiesStoreMembers from '~client/app/store/entities/members';
 
 // ==================================================
 // State
@@ -26,7 +25,6 @@ export type Payload = {
   action: {
     updateOrganizationTree: {
       teams: ReturnType<typeof EntitiesStoreTeams.teamsSelector>;
-      members: ReturnType<typeof EntitiesStoreMembers.membersByTeamIdSelector>;
     };
   };
   operation: {};

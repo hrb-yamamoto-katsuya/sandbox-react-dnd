@@ -46,8 +46,7 @@ const slice = ReduxToolkit.createSlice({
       >
     ) {
       const { tree } = OrganizationEntity.getOrganizationTree(
-        action.payload.teams,
-        action.payload.members
+        action.payload.teams
       );
 
       state.tree = [tree];

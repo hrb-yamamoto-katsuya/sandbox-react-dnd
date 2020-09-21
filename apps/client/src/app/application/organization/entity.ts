@@ -1,8 +1,6 @@
-import * as MembersEntity from '../domain/members/entity';
 import * as TeamsEntity from '../domain/teams/entity';
 
 import * as EntitiesStoreTeams from '~client/app/store/entities/teams';
-import * as EntitiesStoreMembers from '~client/app/store/entities/members';
 
 export const itemTypes = {
   team: 'team',
@@ -10,8 +8,7 @@ export const itemTypes = {
 };
 
 type OrganizationTreeNode = TeamsEntity.Team & {
-  members: MembersEntity.Member[] | null;
-  children: OrganizationTreeNode[] | null;
+  children: OrganizationTreeNode[];
 };
 
 export type OrganizationTree = {
@@ -22,8 +19,7 @@ export type OrganizationTree = {
  * 組織のツリー構造取得
  */
 export const getOrganizationTree = (
-  teams: ReturnType<typeof EntitiesStoreTeams.teamsSelector>,
-  members: ReturnType<typeof EntitiesStoreMembers.membersByTeamIdSelector>
+  teams: ReturnType<typeof EntitiesStoreTeams.teamsSelector>
 ) => {
   // SEE: https://typeofnan.dev/an-easy-way-to-build-a-tree-with-object-references/
   /**
@@ -31,8 +27,7 @@ export const getOrganizationTree = (
    */
   const teamsTreeNodes: OrganizationTreeNode[] = teams.map((team) => ({
     ...team,
-    children: null,
-    members: members[team.id],
+    children: [],
   }));
 
   const idMapping = teamsTreeNodes.reduce((acc, current, index) => {
