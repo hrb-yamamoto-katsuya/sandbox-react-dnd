@@ -1,7 +1,13 @@
 import * as React from 'react';
 
-import * as Teams from '../components/teams';
+import * as AppStateOrganization from '~client/app/store/organization';
 
-export const Component = () => {
-  return <Teams.Component />;
+import * as TeamRoot from '../components/team-root';
+
+type Props = {
+  tree: AppStateOrganization.State['tree'];
+};
+
+export const Component = (props: Props) => {
+  return <TeamRoot.Component tree={props.tree} />;
 };

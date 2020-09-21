@@ -3,6 +3,8 @@ import * as Store from '~client/app/store';
 
 import * as Slice from './slice';
 
+import * as MembersEntity from '~client/app/application/domain/members/entity';
+
 const adapterSelector = Slice.adapter.getSelectors();
 
 const featureStateSelector = (state: Store.RootState) => state.entities.members;
@@ -16,7 +18,7 @@ type MembersByTeamId = {
   [teamId: string]: ReturnType<typeof membersSelector>;
 };
 
-export const membersByTeamIdSelector = ReduxToolkit.createSelector(
+const membersByTeamIdSelector = ReduxToolkit.createSelector(
   membersSelector,
   (members) =>
     members.reduce<MembersByTeamId>((acc, current) => {
@@ -27,3 +29,9 @@ export const membersByTeamIdSelector = ReduxToolkit.createSelector(
       return acc;
     }, {})
 );
+
+export const teamsMemberSelector = (teamId: MembersEntity.Member['teamId']) =>
+  ReduxToolkit.createSelector(
+    membersByTeamIdSelector,
+    (state) => state[teamId]
+  );

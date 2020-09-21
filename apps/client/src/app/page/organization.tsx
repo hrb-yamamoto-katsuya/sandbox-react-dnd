@@ -26,11 +26,10 @@ export const Component = () => {
       teams,
     })
   );
-  const org = ReactRedux.useSelector(
+  const organization = ReactRedux.useSelector(
     AppStateOrganization.featureStateSelector,
     ReactRedux.shallowEqual
   );
-  console.log('org', org);
 
   // const { tree } = OrganizationEntity.getOrganizationTree(
   //   teams,
@@ -39,23 +38,23 @@ export const Component = () => {
 
   // console.log('tree', [tree]);
 
-  React.useEffect(() => {
-    // dispatch(
-    //   EntitiesTeams.actions.addTeam({
-    //     id: 100,
-    //     name: 'team-100',
-    //     parentTeamId: 0,
-    //   })
-    // );
-    // dispatch(
-    //   EntitiesMembers.actions.addMember({
-    //     id: 'aaaaaaaaaaaaaaa',
-    //     name: 'team-100',
-    //     src: 'a',
-    //     teamId: 1,
-    //   })
-    // );
-  }, [dispatch]);
+  // React.useEffect(() => {
+  // dispatch(
+  //   EntitiesTeams.actions.addTeam({
+  //     id: 100,
+  //     name: 'team-100',
+  //     parentTeamId: 0,
+  //   })
+  // );
+  // dispatch(
+  //   EntitiesMembers.actions.addMember({
+  //     id: 'aaaaaaaaaaaaaaa',
+  //     name: 'tyankatsu',
+  //     src: 'a',
+  //     teamId: 1,
+  //   })
+  // );
+  // }, [dispatch]);
 
-  return <Organization.Component />;
+  return <Organization.Component tree={organization.tree} />;
 };
