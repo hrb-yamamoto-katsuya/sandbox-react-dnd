@@ -12,19 +12,25 @@ type Props = {
   team: AppStateOrganization.State['tree'][number];
 };
 
+// const renderTeam = (children: AppStateOrganization.State['tree'][number]['children']) => {}
+
 export const Component = (props: Props) => {
-  return props.team.children.length < 0 ? (
-    props.team.children.map((team) => (
-      <ReactDnD.DndProvider backend={ReactDnDHTML5Backend.HTML5Backend}>
+  return (
+    <>
+      {props.team.children.length < 0 ? (
+        props.team.children.map((team) => (
+          // <ReactDnD.DndProvider backend={ReactDnDHTML5Backend.HTML5Backend}>
+          <StyledTeamContainer>
+            <Team.Component key={team.id} team={team} />
+          </StyledTeamContainer>
+          // </ReactDnD.DndProvider>
+        ))
+      ) : (
         <StyledTeamContainer>
-          <Team.Component key={team.id} team={team} />
+          <Team.Component key={props.team.id} team={props.team} />
         </StyledTeamContainer>
-      </ReactDnD.DndProvider>
-    ))
-  ) : (
-    <StyledTeamContainer>
-      <Team.Component key={props.team.id} team={props.team} />
-    </StyledTeamContainer>
+      )}
+    </>
   );
 };
 

@@ -1,28 +1,48 @@
 import * as React from 'react';
+import * as ReactRedux from 'react-redux';
 
 import styled from 'styled-components';
 
 import * as AppStateOrganization from '~client/app/store/organization';
+import * as EntitiesMembers from '~client/app/store/entities/members';
+
+import * as Members from './members';
 
 type Props = {
   team: AppStateOrganization.State['tree'][number];
 };
 
 export const Component = (props: Props) => {
-  console.log(props.team);
+  const members = ReactRedux.useSelector(
+    EntitiesMembers.teamsMemberSelector(props.team.id),
+    ReactRedux.shallowEqual
+  );
 
   return (
-    <>
+    <StyledTeam>
       <StyledHeading>{props.team.name}</StyledHeading>
+      <Members.Component members={members} />
+
       {props.team.children.length > 0 &&
-        props.team.children.map((team) => <Component team={team} />)}
-    </>
+        props.team.children.map((team) => (
+          <Component key={team.id} team={team} />
+        ))}
+    </StyledTeam>
   );
 };
 
 const StyledHeading = styled.h1`
   font-size: 3rem;
   font-weight: bold;
+`;
+
+const StyledTeam = styled.div`
+  width: 300px;
+  cursor: move;
+
+  &.isDragging {
+    opacity: 0;
+  }
 `;
 
 // import * as React from 'react';
