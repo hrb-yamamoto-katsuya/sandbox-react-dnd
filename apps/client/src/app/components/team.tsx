@@ -27,13 +27,11 @@ export const Component = (props: Props) => {
         </StyledTeam>
       </div>
 
-      {props.team.children.length > 0 && (
-        <StyledChildTeam>
-          {props.team.children.map((team) => (
-            <Component key={team.id} team={team} />
-          ))}
-        </StyledChildTeam>
-      )}
+      <StyledChildTeam>
+        {props.team.children.map((team) => (
+          <Component key={team.id} team={team} />
+        ))}
+      </StyledChildTeam>
     </StyledTeamContainer>
   );
 };

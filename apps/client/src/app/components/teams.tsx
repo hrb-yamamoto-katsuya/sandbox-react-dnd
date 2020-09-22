@@ -10,20 +10,8 @@ type Props = {
   team: AppStateOrganization.State['tree'][number];
 };
 
-// const renderTeam = (children: AppStateOrganization.State['tree'][number]['children']) => {}
-
 export const Component = (props: Props) => {
-  return (
-    <>
-      {props.team.children.length < 0 ? (
-        props.team.children.map((team) => (
-          <Team.Component key={team.id} team={team} />
-        ))
-      ) : (
-        <Team.Component key={props.team.id} team={props.team} />
-      )}
-    </>
-  );
+  return <Team.Component key={props.team.id} team={props.team} />;
 };
 
 // import * as React from 'react';
