@@ -13,9 +13,10 @@ type Props = {
 export const Component = (props: Props) => {
   return (
     <StyledMembersContainer>
-      {props.members.map((member, index) => (
-        <Member.Component key={member.id} {...member} index={index} />
-      ))}
+      {props.members &&
+        props.members.map((member, index) => (
+          <Member.Component key={member.id} {...member} index={index} />
+        ))}
     </StyledMembersContainer>
   );
 };

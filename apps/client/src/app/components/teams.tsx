@@ -1,6 +1,4 @@
 import * as React from 'react';
-import * as ReactDnD from 'react-dnd';
-import * as ReactDnDHTML5Backend from 'react-dnd-html5-backend';
 
 import * as AppStateOrganization from '~client/app/store/organization';
 
@@ -19,24 +17,14 @@ export const Component = (props: Props) => {
     <>
       {props.team.children.length < 0 ? (
         props.team.children.map((team) => (
-          // <ReactDnD.DndProvider backend={ReactDnDHTML5Backend.HTML5Backend}>
-          <StyledTeamContainer>
-            <Team.Component key={team.id} team={team} />
-          </StyledTeamContainer>
-          // </ReactDnD.DndProvider>
+          <Team.Component key={team.id} team={team} />
         ))
       ) : (
-        <StyledTeamContainer>
-          <Team.Component key={props.team.id} team={props.team} />
-        </StyledTeamContainer>
+        <Team.Component key={props.team.id} team={props.team} />
       )}
     </>
   );
 };
-
-const StyledTeamContainer = styled.div`
-  display: flex;
-`;
 
 // import * as React from 'react';
 // import * as ReactDnD from 'react-dnd';

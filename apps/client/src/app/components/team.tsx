@@ -19,30 +19,45 @@ export const Component = (props: Props) => {
   );
 
   return (
-    <StyledTeam>
-      <StyledHeading>{props.team.name}</StyledHeading>
-      <Members.Component members={members} />
+    <StyledTeamContainer>
+      <div>
+        <StyledTeam>
+          <StyledHeading>{props.team.name}</StyledHeading>
+          <Members.Component members={members} />
+        </StyledTeam>
+      </div>
 
-      {props.team.children.length > 0 &&
-        props.team.children.map((team) => (
-          <Component key={team.id} team={team} />
-        ))}
-    </StyledTeam>
+      {props.team.children.length > 0 && (
+        <StyledChildTeam>
+          {props.team.children.map((team) => (
+            <Component key={team.id} team={team} />
+          ))}
+        </StyledChildTeam>
+      )}
+    </StyledTeamContainer>
   );
 };
+
+const StyledTeamContainer = styled.div`
+  display: flex;
+`;
+
+const StyledTeam = styled.div`
+  cursor: move;
+  width: 300px;
+
+  &.isDragging {
+    opacity: 0;
+  }
+`;
 
 const StyledHeading = styled.h1`
   font-size: 3rem;
   font-weight: bold;
 `;
 
-const StyledTeam = styled.div`
-  width: 300px;
-  cursor: move;
-
-  &.isDragging {
-    opacity: 0;
-  }
+const StyledChildTeam = styled.div`
+  /* display: flex; */
 `;
 
 // import * as React from 'react';
