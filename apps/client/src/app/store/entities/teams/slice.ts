@@ -44,6 +44,8 @@ const slice = ReduxToolkit.createSlice({
   reducers: {
     addTeams: adapter.addMany,
     addTeam: adapter.addOne,
+
+    updateTeam: adapter.updateOne,
   },
 });
 

@@ -5,6 +5,7 @@ import * as ReactDnD from 'react-dnd';
 import styled from 'styled-components';
 
 import * as DomainsOrganization from '~client/app/store/domains/organization';
+import * as EntitiesTeams from '~client/app/store/entities/teams';
 
 import * as OrganizationEntity from '~client/app/application/organization/entity';
 
@@ -14,22 +15,46 @@ type Props = {
   team: DomainsOrganization.State['tree'][number];
 };
 
+type DragItem = {
+  type: typeof OrganizationEntity.itemTypes.team;
+  id: Props['team']['id'];
+};
+
 export const Component = (props: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);
+  const dispatch = ReactRedux.useDispatch();
 
-  const [{ isDragging }, refDrag] = ReactDnD.useDrag({
+  const moveTeam = React.useCallback(
+    (
+      dragItemId: Props['team']['id'],
+      dropTargetParentTeamId: Props['team']['parentTeamId']
+    ) => {
+      dispatch(
+        EntitiesTeams.actions.updateTeam({
+          id: dragItemId,
+          changes: { parentTeamId: dropTargetParentTeamId },
+        })
+      );
+    },
+    [dispatch]
+  );
+
+  const [{}, refDrag] = ReactDnD.useDrag({
     item: {
       type: OrganizationEntity.itemTypes.team,
-      id: props.team.name,
-      // index: props.index,
+      id: props.team.id,
     },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
   });
 
   const [{}, refDrop] = ReactDnD.useDrop({
     accept: OrganizationEntity.itemTypes.team,
+    drop: (item: DragItem) => {
+      const dragItem = item;
+      const dropItem = props.team;
+      if (dragItem.id === dropItem.id) return;
+
+      moveTeam(dragItem.id, dropItem.id);
+    },
   });
 
   refDrop(refDrag(ref));
@@ -44,7 +69,8 @@ export const Component = (props: Props) => {
       <div>
         <StyledTeam ref={ref}>
           <StyledHeading>{props.team.name}</StyledHeading>
-          <Members.Component members={members} />
+          <p>parent: {props.team.parentTeamId}</p>
+          <Members.Component members={members} teamId={props.team.id} />
         </StyledTeam>
       </div>
 
@@ -75,81 +101,4 @@ const StyledHeading = styled.h1`
   font-weight: bold;
 `;
 
-const StyledChildTeam = styled.div`
-  /* display: flex; */
-`;
-
-// import * as React from 'react';
-// import * as ReactDnD from 'react-dnd';
-
-// import styled from 'styled-components';
-
-// import * as Members from './members';
-
-// import { mockData } from './mock-data';
-// import * as OrganizationEntity from '~client/app/application/organization/entity';
-
-// type Props = typeof mockData[number] & {
-// index: number;
-//   moveTeam: (dragIndex: number, hoverIndex: number) => void;
-// };
-
-// type DragItem = {
-//   index: Props['index'];
-//   id: Props['teamName'];
-//   type: typeof OrganizationEntity.itemTypes.team;
-// };
-
-// export const Component = (props: Props) => {
-//   const ref = React.useRef<HTMLDivElement>(null);
-
-//   const [{ isDragging }, refDrag] = ReactDnD.useDrag({
-//     item: {
-//       type: OrganizationEntity.itemTypes.team,
-//       id: props.teamName,
-//       index: props.index,
-//     },
-//     collect: (monitor) => ({
-//       isDragging: monitor.isDragging(),
-//     }),
-//   });
-
-//   const [{}, refDrop] = ReactDnD.useDrop({
-//     accept: OrganizationEntity.itemTypes.team,
-//     hover(item: DragItem) {
-//       if (!ref.current) return;
-
-//       const dragIndex = item.index;
-//       const hoverIndex = props.index;
-
-//       if (dragIndex === hoverIndex) return;
-
-//       props.moveTeam(dragIndex, hoverIndex);
-
-//       item.index = hoverIndex;
-//     },
-//   });
-
-//   refDrag(refDrop(ref));
-
-//   return (
-//     <StyledTeam ref={ref} className={`${isDragging ? 'isDragging' : ''}`}>
-//       <StyledHeading>{props.teamName}</StyledHeading>
-//       <Members.Component members={props.members} />
-//     </StyledTeam>
-//   );
-// };
-
-// const StyledHeading = styled.h1`
-//   font-size: 3rem;
-//   font-weight: bold;
-// `;
-
-// const StyledTeam = styled.div`
-//   width: 300px;
-//   cursor: move;
-
-//   &.isDragging {
-//     opacity: 0;
-//   }
-// `;
+const StyledChildTeam = styled.div``;
