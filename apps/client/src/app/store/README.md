@@ -1,4 +1,4 @@
-[Domain data](https://redux.js.org/recipes/structuring-reducers/basic-reducer-structure#basic-state-shape)
+[Normalizing State Shape \| Redux](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape#organizing-normalized-data-in-state)
 及び、
 [Scalable Frontend \#3 — The State Layer – The Miners](https://blog.codeminer42.com/scalable-frontend-3-the-state-layer-b23ed69ca57c/)
 の
@@ -16,10 +16,7 @@
 
 ```bash
 .
-├── appState1 -> Application固有のstate
-├── appState2
-├── ...
-├── appStateN
+├── domains -> Domainに依存したデータ
 ├── entities -> Domain dataを正規化したものを入れる。
 └── ui -> uiに依存したstate
 ```

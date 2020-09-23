@@ -1,27 +1,48 @@
 import * as React from 'react';
 import * as ReactRedux from 'react-redux';
+import * as ReactDnD from 'react-dnd';
 
 import styled from 'styled-components';
 
-import * as AppStateOrganization from '~client/app/store/organization';
-import * as EntitiesMembers from '~client/app/store/entities/members';
+import * as DomainsOrganization from '~client/app/store/domains/organization';
+
+import * as OrganizationEntity from '~client/app/application/organization/entity';
 
 import * as Members from './members';
 
 type Props = {
-  team: AppStateOrganization.State['tree'][number];
+  team: DomainsOrganization.State['tree'][number];
 };
 
 export const Component = (props: Props) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  const [{ isDragging }, refDrag] = ReactDnD.useDrag({
+    item: {
+      type: OrganizationEntity.itemTypes.team,
+      id: props.team.name,
+      // index: props.index,
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+
+  const [{}, refDrop] = ReactDnD.useDrop({
+    accept: OrganizationEntity.itemTypes.team,
+  });
+
+  refDrop(refDrag(ref));
+
   const members = ReactRedux.useSelector(
-    EntitiesMembers.teamsMemberSelector(props.team.id),
+    DomainsOrganization.teamsMemberSelector(props.team.id),
     ReactRedux.shallowEqual
   );
 
   return (
     <StyledTeamContainer>
       <div>
-        <StyledTeam>
+        <StyledTeam ref={ref}>
           <StyledHeading>{props.team.name}</StyledHeading>
           <Members.Component members={members} />
         </StyledTeam>
@@ -69,7 +90,7 @@ const StyledChildTeam = styled.div`
 // import * as OrganizationEntity from '~client/app/application/organization/entity';
 
 // type Props = typeof mockData[number] & {
-//   index: number;
+// index: number;
 //   moveTeam: (dragIndex: number, hoverIndex: number) => void;
 // };
 

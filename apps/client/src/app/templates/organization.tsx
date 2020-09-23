@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import * as AppStateOrganization from '~client/app/store/organization';
+import * as DomainsOrganization from '~client/app/store/domains/organization';
 
 import * as TeamRoot from '../components/team-root';
 
 type Props = {
-  tree: AppStateOrganization.State['tree'];
+  tree: DomainsOrganization.State['tree'];
 };
 
 export const Component = (props: Props) => {

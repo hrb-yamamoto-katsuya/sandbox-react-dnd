@@ -5,7 +5,7 @@ import * as ReactDnDHTML5Backend from 'react-dnd-html5-backend';
 
 import styled from 'styled-components';
 
-import * as AppStateOrganization from '~client/app/store/organization';
+import * as DomainsOrganization from '~client/app/store/domains/organization';
 import * as EntitiesTeams from '~client/app/store/entities/teams';
 import * as EntitiesMembers from '~client/app/store/entities/members';
 
@@ -13,7 +13,7 @@ import * as Teams from '~client/app/components/teams';
 import * as DropZone from './drop-zone';
 
 type Props = {
-  tree: AppStateOrganization.State['tree'];
+  tree: DomainsOrganization.State['tree'];
 };
 
 export const Component = (props: Props) => {
@@ -35,7 +35,8 @@ export const Component = (props: Props) => {
       EntitiesMembers.actions.addMember({
         id: 'aaaaaaaaaaaaaaaaaaaa',
         name: 'tyankatsu',
-        src: 'aaaa',
+        src:
+          'https://avatars3.githubusercontent.com/u/28397593?s=460&u=342eba9a0597d5ee04964d719518180d99225cd3&v=4',
         teamId: 9,
       })
     );

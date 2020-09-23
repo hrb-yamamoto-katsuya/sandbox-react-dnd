@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import * as AppStateOrganization from '~client/app/store/organization';
+import * as DomainsOrganization from '~client/app/store/domains/organization';
 
 import styled from 'styled-components';
 
 import * as Team from './team';
 
 type Props = {
-  team: AppStateOrganization.State['tree'][number];
+  team: DomainsOrganization.State['tree'][number];
 };
 
 export const Component = (props: Props) => {

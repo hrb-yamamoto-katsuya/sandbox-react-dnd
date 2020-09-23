@@ -3,11 +3,18 @@ import * as Store from '~client/app/store';
 
 import * as Slice from './slice';
 
-const adapterSelector = Slice.adapter.getSelectors();
+import * as OrganizationEntity from '~client/app/application/organization/entity';
 
-const featureStateSelector = (state: Store.RootState) => state.entities.teams;
+export const adapterSelector = Slice.adapter.getSelectors(
+  (state: Store.RootState) => state.entities.teams
+);
 
-export const teamsSelector = ReduxToolkit.createSelector(
-  featureStateSelector,
-  adapterSelector.selectAll
+export const teamsSelector = adapterSelector.selectAll;
+
+export const teamsTreeSelector = ReduxToolkit.createSelector(
+  teamsSelector,
+  (teams) => {
+    const { tree } = OrganizationEntity.getOrganizationTree(teams);
+    return [tree];
+  }
 );

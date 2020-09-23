@@ -39,10 +39,10 @@ const slice = ReduxToolkit.createSlice({
   name,
   initialState: initialState as Types.State,
   reducers: {
-    updateOrganizationTree(
+    createOrganizationTree(
       state,
       action: ReduxToolkit.PayloadAction<
-        Types.Payload['action']['updateOrganizationTree']
+        Types.Payload['action']['createOrganizationTree']
       >
     ) {
       const { tree } = OrganizationEntity.getOrganizationTree(

@@ -23,10 +23,6 @@ export type State = InitialState | ValidState;
 // ==================================================
 
 export type Payload = {
-  action: {
-    teamsReceived: {
-      teams: TeamsEntity.Team[];
-    };
-  };
+  action: {};
   operation: {};
 };

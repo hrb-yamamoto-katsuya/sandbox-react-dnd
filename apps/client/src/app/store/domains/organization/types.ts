@@ -7,11 +7,11 @@ import * as EntitiesStoreTeams from '~client/app/store/entities/teams';
 // State
 // ==================================================
 
-export interface InitialState extends OrganizationEntity.OrganizationTree {
+export interface InitialState extends OrganizationEntity.Organization {
   status: Status.Pristine;
 }
 
-export interface ValidState extends OrganizationEntity.OrganizationTree {
+export interface ValidState extends OrganizationEntity.Organization {
   status: Exclude<Status, Status.Pristine>;
 }
 
@@ -23,7 +23,7 @@ export type State = InitialState | ValidState;
 
 export type Payload = {
   action: {
-    updateOrganizationTree: {
+    createOrganizationTree: {
       teams: ReturnType<typeof EntitiesStoreTeams.teamsSelector>;
     };
   };

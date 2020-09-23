@@ -11,7 +11,7 @@ type OrganizationTreeNode = TeamsEntity.Team & {
   children: OrganizationTreeNode[];
 };
 
-export type OrganizationTree = {
+export type Organization = {
   tree: OrganizationTreeNode[];
 };
 
@@ -25,7 +25,7 @@ export const getOrganizationTree = (
   /**
    * teamsに対してなにか付与したteamsを返す
    */
-  const teamsTreeNodes: OrganizationTreeNode[] = teams.map((team) => ({
+  const teamsTreeNodes: Organization['tree'] = teams.map((team) => ({
     ...team,
     children: [],
   }));

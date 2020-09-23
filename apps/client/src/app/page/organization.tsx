@@ -6,7 +6,7 @@ import * as Organization from '../templates/organization';
 import * as EntitiesTeams from '~client/app/store/entities/teams';
 import * as EntitiesMembers from '~client/app/store/entities/members';
 
-import * as AppStateOrganization from '~client/app/store/organization';
+import * as DomainsOrganization from '~client/app/store/domains/organization';
 
 import * as MockData from './mock-data';
 
@@ -16,45 +16,20 @@ export const Component = () => {
   dispatch(EntitiesTeams.actions.addTeams(MockData.teams));
   dispatch(EntitiesMembers.actions.addMembers(MockData.members));
 
-  const teams = ReactRedux.useSelector(
-    EntitiesTeams.teamsSelector,
+  const teams = ReactRedux.useSelector(EntitiesTeams.teamsSelector);
+
+  const tree = ReactRedux.useSelector(
+    DomainsOrganization.treeSelector,
     ReactRedux.shallowEqual
   );
 
-  dispatch(
-    AppStateOrganization.actions.updateOrganizationTree({
-      teams,
-    })
-  );
-  const organization = ReactRedux.useSelector(
-    AppStateOrganization.featureStateSelector,
-    ReactRedux.shallowEqual
-  );
+  React.useEffect(() => {
+    dispatch(
+      DomainsOrganization.actions.createOrganizationTree({
+        teams,
+      })
+    );
+  }, [dispatch, teams]);
 
-  // const { tree } = OrganizationEntity.getOrganizationTree(
-  //   teams,
-  //   membersByTeamId
-  // );
-
-  // console.log('tree', [tree]);
-
-  // React.useEffect(() => {
-  // dispatch(
-  //   EntitiesTeams.actions.addTeam({
-  //     id: 100,
-  //     name: 'team-100',
-  //     parentTeamId: 0,
-  //   })
-  // );
-  // dispatch(
-  //   EntitiesMembers.actions.addMember({
-  //     id: 'aaaaaaaaaaaaaaa',
-  //     name: 'tyankatsu',
-  //     src: 'a',
-  //     teamId: 1,
-  //   })
-  // );
-  // }, [dispatch]);
-
-  return <Organization.Component tree={organization.tree} />;
+  return tree.length !== 0 && <Organization.Component tree={tree} />;
 };
