@@ -25,7 +25,7 @@ type DragItem = {
 export const Component = (props: Props) => {
   const dispatch = ReactRedux.useDispatch();
 
-  const moveTeam = React.useCallback(
+  const moveMember = React.useCallback(
     (
       dragItemId: Props['members'][number]['id'],
       dropTargetTeamId: Props['teamId']
@@ -46,14 +46,14 @@ export const Component = (props: Props) => {
       const dragItem = item;
       const dropItem = props;
 
-      moveTeam(dragItem.id, dropItem.teamId);
+      moveMember(dragItem.id, dropItem.teamId);
     },
   });
   return (
     <StyledMembersContainer ref={refDrop}>
       {props.members &&
         props.members.map((member, index) => (
-          <Member.Component key={member.id} {...member} index={index} />
+          <Member.Component key={member.id} {...member} />
         ))}
     </StyledMembersContainer>
   );

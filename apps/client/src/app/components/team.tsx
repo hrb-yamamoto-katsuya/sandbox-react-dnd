@@ -24,6 +24,11 @@ export const Component = (props: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const dispatch = ReactRedux.useDispatch();
 
+  const members = ReactRedux.useSelector(
+    DomainsOrganization.teamsMemberSelector(props.team.id),
+    ReactRedux.shallowEqual
+  );
+
   const moveTeam = React.useCallback(
     (
       dragItemId: Props['team']['id'],
@@ -58,11 +63,6 @@ export const Component = (props: Props) => {
   });
 
   refDrop(refDrag(ref));
-
-  const members = ReactRedux.useSelector(
-    DomainsOrganization.teamsMemberSelector(props.team.id),
-    ReactRedux.shallowEqual
-  );
 
   return (
     <StyledTeamContainer>

@@ -86,7 +86,7 @@ export const members = [
   {
     id: 'd253228175e3860eb875971a26a61fc31b420af6',
     name: 'Sonny',
-    teamId: 17,
+    teamId: undefined,
     src: 'https://robohash.org/suntmaioreset.png?size=150x150&set=set1',
   },
   {
