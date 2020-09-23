@@ -65,4 +65,7 @@ const StyledDropZone = styled.div`
   height: 200px;
   border: 1px solid #000;
   overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(255, 255, 255, 0.5);
 `;
