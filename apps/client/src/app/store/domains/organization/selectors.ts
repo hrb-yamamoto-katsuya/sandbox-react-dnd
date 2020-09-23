@@ -2,7 +2,7 @@ import * as ReduxToolkit from '@reduxjs/toolkit';
 import * as Store from '~client/app/store';
 
 import * as EntitiesMembers from '~client/app/store/entities/members';
-import * as MembersEntity from '~client/app/application/domain/members/entity';
+import * as MembersEntity from '~client/app/application/entities/members/entity';
 
 export const featureStateSelector = (state: Store.RootState) =>
   state.domains.organization;

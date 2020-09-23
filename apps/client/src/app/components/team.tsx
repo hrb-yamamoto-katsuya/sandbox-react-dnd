@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import * as DomainsOrganization from '~client/app/store/domains/organization';
 import * as EntitiesTeams from '~client/app/store/entities/teams';
 
-import * as OrganizationEntity from '~client/app/application/organization/entity';
+import * as OrganizationEntity from '~client/app/application/domains/organization/entity';
 
 import * as Members from './members';
 

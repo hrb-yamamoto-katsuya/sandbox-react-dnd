@@ -6,9 +6,9 @@ import styled from 'styled-components';
 
 import * as Member from './member';
 
-import * as MembersEntities from '~client/app/application/domain/members/entity';
-import * as TeamsEntities from '~client/app/application/domain/teams/entity';
-import * as OrganizationEntity from '~client/app/application/organization/entity';
+import * as MembersEntities from '~client/app/application/entities/members/entity';
+import * as TeamsEntities from '~client/app/application/entities/teams/entity';
+import * as OrganizationEntity from '~client/app/application/domains/organization/entity';
 
 import * as EntitiesMembers from '~client/app/store/entities/members';
 

@@ -3,7 +3,7 @@ import * as Store from '~client/app/store';
 
 import * as Slice from './slice';
 
-import * as OrganizationEntity from '~client/app/application/organization/entity';
+import * as OrganizationEntity from '~client/app/application/domains/organization/entity';
 
 export const adapterSelector = Slice.adapter.getSelectors(
   (state: Store.RootState) => state.entities.teams

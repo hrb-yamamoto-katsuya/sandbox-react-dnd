@@ -1,7 +1,7 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
 import Status from '~client/app/store/status';
-import * as OrganizationEntity from '~client/app/application/organization/entity';
+import * as OrganizationEntity from '~client/app/application/domains/organization/entity';
 
 import * as Constants from './constants';
 import * as Types from './types';

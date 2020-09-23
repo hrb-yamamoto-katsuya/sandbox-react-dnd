@@ -1,4 +1,4 @@
-import * as TeamsEntity from '../domain/teams/entity';
+import * as TeamsEntity from '~client/app/application/entities/teams/entity';
 
 import * as EntitiesStoreTeams from '~client/app/store/entities/teams';
 

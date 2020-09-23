@@ -1,5 +1,5 @@
 import Status from '~client/app/store/status';
-import * as OrganizationEntity from '~client/app/application/organization/entity';
+import * as OrganizationEntity from '~client/app/application/domains/organization/entity';
 
 import * as EntitiesStoreTeams from '~client/app/store/entities/teams';
 

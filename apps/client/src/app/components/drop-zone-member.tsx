@@ -3,8 +3,8 @@ import * as ReactDnD from 'react-dnd';
 
 import styled from 'styled-components';
 
-import * as MembersEntities from '~client/app/application/domain/members/entity';
-import * as OrganizationEntity from '~client/app/application/organization/entity';
+import * as MembersEntities from '~client/app/application/entities/members/entity';
+import * as OrganizationEntity from '~client/app/application/domains/organization/entity';
 
 type Props = MembersEntities.Member;
 
