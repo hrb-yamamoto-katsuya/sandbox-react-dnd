@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import * as DomainsOrganization from '~client/app/store/domains/organization';
 
-import * as Team from './team';
+import * as TeamRoot from '../components/team-root';
 
 type Props = {
-  team: DomainsOrganization.State['tree'][number];
+  tree: DomainsOrganization.State['tree'];
 };
 
 export const Component = (props: Props) => {
-  return <Team.Component key={props.team.id} team={props.team} />;
+  return <TeamRoot.Component tree={props.tree} />;
 };

@@ -1,6 +1,7 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
 import Status from '~client/app/store/status';
+import * as OrganizationEntity from '~client/app/application/domains/organization/entity';
 
 import * as Constants from './constants';
 import * as Types from './types';
@@ -25,6 +26,7 @@ export function assertStatus(
 
 export const initialState: Types.InitialState = {
   status: Status.Pristine,
+  tree: [],
 };
 
 const name = `${Constants.parentsKey}/${Constants.featureKey}`;
@@ -36,7 +38,20 @@ const name = `${Constants.parentsKey}/${Constants.featureKey}`;
 const slice = ReduxToolkit.createSlice({
   name,
   initialState: initialState as Types.State,
-  reducers: {},
+  reducers: {
+    createOrganizationTree(
+      state,
+      action: ReduxToolkit.PayloadAction<
+        Types.Payload['action']['createOrganizationTree']
+      >
+    ) {
+      const { tree } = OrganizationEntity.getOrganizationTree(
+        action.payload.teams
+      );
+
+      state.tree = [tree];
+    },
+  },
 });
 
 export const { actions, reducer } = slice;

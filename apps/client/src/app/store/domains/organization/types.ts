@@ -1,16 +1,19 @@
 import Status from '~client/app/store/status';
+import * as OrganizationEntity from '~client/app/application/domains/organization/entity';
+
+import * as EntitiesStoreTeams from '~client/app/store/entities/teams';
 
 // ==================================================
 // State
 // ==================================================
 
-export type InitialState = {
+export interface InitialState extends OrganizationEntity.Organization {
   status: Status.Pristine;
-};
+}
 
-export type ValidState = {
+export interface ValidState extends OrganizationEntity.Organization {
   status: Exclude<Status, Status.Pristine>;
-};
+}
 
 export type State = InitialState | ValidState;
 
@@ -19,6 +22,10 @@ export type State = InitialState | ValidState;
 // ==================================================
 
 export type Payload = {
-  action: {};
+  action: {
+    createOrganizationTree: {
+      teams: ReturnType<typeof EntitiesStoreTeams.teamsSelector>;
+    };
+  };
   operation: {};
 };

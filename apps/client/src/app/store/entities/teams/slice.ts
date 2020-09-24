@@ -1,6 +1,7 @@
 import * as ReduxToolkit from '@reduxjs/toolkit';
 
 import Status from '~client/app/store/status';
+import * as TeamsEntity from '~client/app/application/entities/teams/entity';
 
 import * as Constants from './constants';
 import * as Types from './types';
@@ -23,9 +24,13 @@ export function assertStatus(
 // Setups
 // ==================================================
 
-export const initialState: Types.InitialState = {
+export const adapter = ReduxToolkit.createEntityAdapter<TeamsEntity.Team>({
+  selectId: (team) => team.id,
+});
+
+export const initialState: Types.InitialState = adapter.getInitialState({
   status: Status.Pristine,
-};
+});
 
 const name = `${Constants.parentsKey}/${Constants.featureKey}`;
 
@@ -36,7 +41,12 @@ const name = `${Constants.parentsKey}/${Constants.featureKey}`;
 const slice = ReduxToolkit.createSlice({
   name,
   initialState: initialState as Types.State,
-  reducers: {},
+  reducers: {
+    addTeams: adapter.addMany,
+    addTeam: adapter.addOne,
+
+    updateTeam: adapter.updateOne,
+  },
 });
 
 export const { actions, reducer } = slice;

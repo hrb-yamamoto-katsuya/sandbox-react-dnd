@@ -1,16 +1,21 @@
+import * as ReduxToolkit from '@reduxjs/toolkit';
+
 import Status from '~client/app/store/status';
+import * as MembersEntity from '~client/app/application/entities/members/entity';
 
 // ==================================================
 // State
 // ==================================================
 
-export type InitialState = {
+export interface InitialState
+  extends ReduxToolkit.EntityState<MembersEntity.Member> {
   status: Status.Pristine;
-};
+}
 
-export type ValidState = {
+export interface ValidState
+  extends ReduxToolkit.EntityState<MembersEntity.Member> {
   status: Exclude<Status, Status.Pristine>;
-};
+}
 
 export type State = InitialState | ValidState;
 
@@ -19,6 +24,10 @@ export type State = InitialState | ValidState;
 // ==================================================
 
 export type Payload = {
-  action: {};
+  action: {
+    membersReceived: {
+      members: MembersEntity.Member[];
+    };
+  };
   operation: {};
 };
